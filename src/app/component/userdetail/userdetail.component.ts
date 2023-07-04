@@ -18,8 +18,8 @@ export class UserdetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.inputdata = this.data;
-    if (this.inputdata.code > 0) {
-      this.service.GetCustomerbycode(this.inputdata.code).subscribe(item => {
+    if (this.inputdata.id > 0) {
+      this.service.GetCustomerbycode(this.inputdata.id).subscribe(item => {
 
         this.custdata = item;
       });

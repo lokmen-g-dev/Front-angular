@@ -22,11 +22,15 @@ export class PopupComponent implements OnInit {
       this.setpopupdata(this.inputdata.code)
     }
   }
-
+  fileToUpload: any 
+  upload(event:any){
+    this.fileToUpload= event.target.files[0]
+  }
+  
   setpopupdata(code: any) {
     this.service.GetCustomerbycode(code).subscribe(item => {
       this.editdata = item;
-      this.myform.setValue({titre:this.editdata.titre,Description:this.editdata.Description,fileData:this.editdata.fileData,
+      this.myform.setValue({titre:this.editdata.titre,Description:this.editdata.Description,fileData:this.editdata.fileToUpload,
         type:this.editdata.type})
     });
   }

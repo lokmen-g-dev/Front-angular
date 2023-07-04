@@ -34,6 +34,22 @@ export class TableComponent {
     });
   }
 
+  
+  deleteCustomer(id: string) {
+    this.service.Archif(id).subscribe(
+      response => {
+        console.log('Delete operation successful');
+        // Update the customer list after deletion
+        this.loadcustomer();
+        // Handle any other success logic here
+      },
+      error => {
+        console.log('Delete operation failed');
+        // Handle any error logic here
+      }
+    );
+  }
+
   Filterchange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value;
@@ -44,7 +60,7 @@ export class TableComponent {
   }
 
   detailcustomer(code: any) {
-    this.Openpopup(code, 'Customer Detail',UserdetailComponent);
+    this.Openpopup(code, 'Réclamation Detail',UserdetailComponent);
   }
 
   

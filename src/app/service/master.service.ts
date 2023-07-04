@@ -25,13 +25,36 @@ export class MasterService {
     return this.http.get<Customer[]>("http://127.0.0.1:5000/admin/allreclamation");
   }
 
-  Savecustomer(data:any){
-    console.log(data)
-    return this.http.post("http://localhost:5000/admin/reclamer",data);
+  GetAutre():Observable<Customer[]>{
+    return this.http.get<Customer[]>("http://127.0.0.1:5000/type/autre");
   }
 
-  GetCustomerbycode(code:any){
-    return this.http.get("http://localhost:5000/admin/allreclamation"+code);
+  DeleteCustomer(id: string): Observable<any> {
+    const url = `http://127.0.0.1:5000/type/type/${id}`;
+    return this.http.delete(url);
+  }
+  Change(id: string, updatedData: any): Observable<any> {
+    const url = `http://127.0.0.1:5000/type/type/${id}`;
+    return this.http.patch(url, updatedData);
+  }
+
+  Archif(id: string): Observable<any> {
+    const url = `http://127.0.0.1:5000/admin/moveData/${id}`;
+    return this.http.delete(url);
+  }
+  GetType():Observable<Customer[]>{
+    return this.http.get<Customer[]>("http://127.0.0.1:5000/type/type");
+  }
+  delete(id: string) {
+    return this.http.delete(`http://127.0.0.1:5000/type/type/${id}`);
+  }
+  Savecustomer(data:any){
+    console.log(data)
+    return this.http.patch("http://localhost:5000/admin/update/$",data);
+  }
+
+  GetCustomerbycode(id: string){
+    return this.http.get(`http://127.0.0.1:5000/admin/reclamation/${id}`);
   }
 
   GetAssociate(){
